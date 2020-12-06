@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Личный кабинет {{ user.username }}</h1>
+<p><a href="/profile/" ><img src="{{ user.profile.image.url }}" width="200"></a></p>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <legend> Профиль </legend>
+        {{ u_form }}
+        {{ p_form }}
+
+    </fieldset>
+    <button type="submit">Обновить</button>
+</form>
+{% endblock content %}

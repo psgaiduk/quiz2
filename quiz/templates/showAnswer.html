@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 <ol>
+<h2>{{ user.username }}, {%  if procent > 0.8 %} ты справился с викториной {% else %}ты не справился{% endif %}</h2>
 {% for objects in list_answer %}
 
-    <li>Вопрос {{ objects.question }} Ответ {{ objects.answer }} - {% if objects.right == 0 %} Неправильно {% else %} Правильно {% endif %} </li>
+    <h4><li {% if objects.right == 0 %} class="bad" {% else %} class="good" {% endif %} >Вопрос {{ objects.question }}
+        Ответ {{ objects.answer }} - {% if objects.right == 0 %} Неправильно {% else %} Правильно {% endif %} </li></h4>
 
 {% endfor %}
 </ol>
-</body>
-</html>
+    <p>Всего правильных ответов {{ score }}</p>
+
+<a href="/">Вернуться в начало</a>
+
+{% endblock content %}

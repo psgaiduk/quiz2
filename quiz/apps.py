@@ -1,5 +1,8 @@
 from django.apps import AppConfig
 
 
-class QuizConfig(AppConfig):
-    name = 'quiz'
+class UsersConfig(AppConfig):
+    name = 'users'
+
+    def ready(self):
+        import quiz.signals

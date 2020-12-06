@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Welcome to Quiz App</title>
-        </head>
-        <body>
-        {% if user.is_authenticated %}
-            <h1><a href="logout"> logout ddf {{ user.username }}</a></h1>
-            <center><h1><a href="/quiz/">Start Quiz</a></h1></center>
-        {% else %}
-                <form action="" method="post" name="login">
-        {% csrf_token %}
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <p><a href="/profile/"><img src="{{ user.profile.image.url }}" width="200"></a></p>
+    Привет, {{ user.username }}  <a href="logout"> Выйти из аккаунта </a>
+    <center><h1><a href="/quiz/">Начать викторину</a></h1></center>
+{% else %}
 
-        {{ form.as_p }}
-
-        <button type="submit">Войти</button>
-    </form>
-    <center><h1><a href="login">Войти</a></h1></center>
-            <center><h1><a href="register">Start Quiz</a></h1></center>
-        {% endif %}
-        </body>
-        </html>
+    <h1>Викторина доступна только для зарегистрированных пользователей. Если у тебя есть аккаунт,
+        то необходимо <a href="login">войти в аккаунт</a>, если у тебя нет аккаунта, то необходимо <a href="register">зарегистрироваться</a></h1>
+{% endif %}
+{% endblock content %}
